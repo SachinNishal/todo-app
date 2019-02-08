@@ -25,8 +25,7 @@ if(keyPressed == "C" or keyPressed == "c"):
     conn.close()
 
 elif (keyPressed == "R" or keyPressed == "r"):
-    conn = sqlite3.connect("todo.db")
-    c = conn.cursor()
+   
     c.execute("SELECT * FROM todo")
     all=c.fetchall()
     for _ in all:
@@ -35,8 +34,7 @@ elif (keyPressed == "R" or keyPressed == "r"):
 
 
 elif (keyPressed == "U" or keyPressed == "u"):
-    conn = sqlite3.connect("todo.db")
-    c = conn.cursor()
+  
     thing = input("Enter a current item : ")
     newthing = input("Enter a updated item : ")
     c.execute("UPDATE todo SET item = ? WHERE item= ?",(newthing,thing))
@@ -45,8 +43,7 @@ elif (keyPressed == "U" or keyPressed == "u"):
 
 
 elif (keyPressed == "D" or keyPressed == "d"):
-    conn = sqlite3.connect("todo.db")
-    c = conn.cursor()
+    
     thing = input("Enter a current item to delete : ")
     c.execute("DELETE FROM todo WHERE item= ?",(thing,))
     conn.commit()
@@ -61,4 +58,4 @@ else:
 
 
 
-###todo- add error handling to avoid multiple items with same name,add error handling to U & D unavilable things
+###todo- add error handling to avoid multiple items with same name,add error handling to avoid U & D unavilable things
