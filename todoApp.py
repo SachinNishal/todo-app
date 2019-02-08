@@ -5,12 +5,10 @@ import os
 if os.path.isfile("./todo.db") is False:
     conn = sqlite3.connect("todo.db")
     c = conn.cursor()
-    c.execute("CREATE TABLE todo(item varchar(100))")
-    conn.commit()
+    c.execute("CREATE TABLE todo(item varchar(100) PRIMARY KEY)")
 else:
     conn = sqlite3.connect("todo.db")
     c = conn.cursor()
-
 
 
 print("----- Welcome to todo app ! -----")
@@ -19,43 +17,31 @@ keyPressed = input("   To add items    : press C \n   To view items   : press R 
    --> : ")
 
 if(keyPressed == "C" or keyPressed == "c"):
-    thing = input("Enter a todo item : ")
-    c.execute("INSERT INTO todo VALUES(?)", (thing,))
-    conn.commit()
-    conn.close()
+    try:
+        newItem = input("Enter a todo item : ")
+        c.execute("INSERT INTO todo VALUES(?) ", (newItem,))
+    except sqlite3.IntegrityError:
+        print("Item already exists ! ")
 
 elif (keyPressed == "R" or keyPressed == "r"):
-   
     c.execute("SELECT * FROM todo")
-    all=c.fetchall()
-    for _ in all:
+    allRows = c.fetchall()
+    for _ in allRows:
         print(*_, sep="")
-    conn.close()
-
 
 elif (keyPressed == "U" or keyPressed == "u"):
-  
-    thing = input("Enter a current item : ")
-    newthing = input("Enter a updated item : ")
-    c.execute("UPDATE todo SET item = ? WHERE item= ?",(newthing,thing))
-    conn.commit()
-    conn.close()
+    existingItem = input("Enter a current item : ")
+    newItem = input("Enter an updated item : ")
+    c.execute("UPDATE todo SET item = ? WHERE item= ?",
+              (newItem, existingItem))
 
 
 elif (keyPressed == "D" or keyPressed == "d"):
-    
-    thing = input("Enter a current item to delete : ")
-    c.execute("DELETE FROM todo WHERE item= ?",(thing,))
-    conn.commit()
-    conn.close()
-
-
-
+    existingItem = input("Enter a current item to delete : ")
+    c.execute("DELETE FROM todo WHERE item= ?", (existingItem,))
 
 else:
     print("Invalid entry, Try again !")
 
-
-
-
-###todo- add error handling to avoid multiple items with same name,add error handling to avoid U & D unavilable things
+conn.commit()
+conn.close()
