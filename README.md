@@ -6,4 +6,4 @@
 * [install Python3.](https://www.python.org/downloads/)
 ---
 
-[![HitCount](http://hits.dwyl.io/SachinNishal/Algorithms-in-Python.svg)](http://hits.dwyl.io/SachinNishal/Algorithms-in-Python)
+[![HitCount](http://hits.dwyl.io/SachinNishal/ToDo-App.svg)](http://hits.dwyl.io/SachinNishal/ToDo-App)
