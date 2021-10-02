@@ -5,7 +5,7 @@ import os
 if os.path.isfile("./todo.db") is False:  # Check if the db already exists.
     conn = sqlite3.connect("todo.db")
     c = conn.cursor()  # Open a DB connection
-    c.execute("CREATE TABLE todo(item varchar(100) PRIMARY KEY)")
+    c.execute("CREATE TABLE todo(item varchar(100) PRIMARY KEY)") # Create a table.
 else:
     conn = sqlite3.connect("todo.db")
     c = conn.cursor()
@@ -41,7 +41,7 @@ elif (keyPressed == "D" or keyPressed == "d"):  # code to delete item
     c.execute("DELETE FROM todo WHERE item= ?", (existingItem,))
 
 else:
-    print("Invalid entry, Try again !")
+    print("Invalid entry, Try again !") # Exception handling.
 
 conn.commit()  # Save & Close DB connection
 conn.close()
