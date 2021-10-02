@@ -5,5 +5,3 @@
 # How to Run
 * [install Python3.](https://www.python.org/downloads/)
 ---
-
-[![HitCount](http://hits.dwyl.io/SachinNishal/ToDo-App.svg)](http://hits.dwyl.io/SachinNishal/ToDo-App)
